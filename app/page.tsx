@@ -112,6 +112,72 @@ export default function Home() {
               >
                 Edit Scenario
               </button>
+              <section className="mt-8 rounded-xl bg-white p-6 shadow">
+  <div className="flex items-center justify-between">
+    <div>
+      <h2 className="text-xl font-bold">Inventory Risk Monitor</h2>
+      <p className="mt-1 text-sm text-slate-600">
+        Components most likely to affect production.
+      </p>
+    </div>
+
+    <span className="rounded-full bg-red-100 px-3 py-1 text-sm font-semibold text-red-700">
+      1 Critical
+    </span>
+  </div>
+
+  <div className="mt-5 overflow-x-auto">
+    <table className="w-full text-left text-sm">
+      <thead className="border-b text-slate-500">
+        <tr>
+          <th className="pb-3 font-medium">Component</th>
+          <th className="pb-3 font-medium">Current Stock</th>
+          <th className="pb-3 font-medium">Daily Usage</th>
+          <th className="pb-3 font-medium">Days of Cover</th>
+          <th className="pb-3 font-medium">Status</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr className="border-b">
+          <td className="py-4 font-semibold">Motor Housing</td>
+          <td className="py-4">30 units</td>
+          <td className="py-4">15 units/day</td>
+          <td className="py-4">2 days</td>
+          <td className="py-4">
+            <span className="rounded-full bg-red-100 px-3 py-1 text-xs font-semibold text-red-700">
+              Critical
+            </span>
+          </td>
+        </tr>
+
+        <tr className="border-b">
+          <td className="py-4 font-semibold">Electric Motor</td>
+          <td className="py-4">120 units</td>
+          <td className="py-4">15 units/day</td>
+          <td className="py-4">8 days</td>
+          <td className="py-4">
+            <span className="rounded-full bg-amber-100 px-3 py-1 text-xs font-semibold text-amber-700">
+              Watch
+            </span>
+          </td>
+        </tr>
+
+        <tr>
+          <td className="py-4 font-semibold">Copper Wire</td>
+          <td className="py-4">900 m</td>
+          <td className="py-4">75 m/day</td>
+          <td className="py-4">12 days</td>
+          <td className="py-4">
+            <span className="rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-700">
+              Healthy
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
             </div>
           )}
         </section>
