@@ -2,13 +2,39 @@
 
 import { useState } from "react";
 
+const inventory = [
+  {
+    component: "Motor Housing",
+    stock: "30 units",
+    usage: "15 units/day",
+    cover: "2 days",
+    status: "Critical",
+    statusClass: "bg-red-100 text-red-700",
+  },
+  {
+    component: "Electric Motor",
+    stock: "120 units",
+    usage: "15 units/day",
+    cover: "8 days",
+    status: "Watch",
+    statusClass: "bg-amber-100 text-amber-700",
+  },
+  {
+    component: "Copper Wire",
+    stock: "900 m",
+    usage: "75 m/day",
+    cover: "12 days",
+    status: "Healthy",
+    statusClass: "bg-green-100 text-green-700",
+  },
+];
+
 export default function Home() {
   const [delayDays, setDelayDays] = useState(7);
   const [scenarioRun, setScenarioRun] = useState(false);
 
-  const ordersAtRisk = scenarioRun ? Math.max(0, delayDays * 5 + 2) : 0;
-  const revenueAtRisk = scenarioRun ? ordersAtRisk * 48000 : 0;
-  const criticalRisks = scenarioRun ? 4 : 3;
+  const ordersAtRisk = scenarioRun ? delayDays * 5 + 2 : 0;
+  const revenueAtRisk = ordersAtRisk * 48000;
 
   const formatINR = (amount: number) =>
     new Intl.NumberFormat("en-IN", {
@@ -34,7 +60,7 @@ export default function Home() {
           <div className="rounded-xl bg-white p-5 shadow">
             <p className="text-sm text-slate-500">Critical risks</p>
             <p className="mt-2 text-3xl font-bold text-red-600">
-              {criticalRisks}
+              {scenarioRun ? 4 : 3}
             </p>
           </div>
 
@@ -112,74 +138,55 @@ export default function Home() {
               >
                 Edit Scenario
               </button>
-              <section className="mt-8 rounded-xl bg-white p-6 shadow">
-  <div className="flex items-center justify-between">
-    <div>
-      <h2 className="text-xl font-bold">Inventory Risk Monitor</h2>
-      <p className="mt-1 text-sm text-slate-600">
-        Components most likely to affect production.
-      </p>
-    </div>
-
-    <span className="rounded-full bg-red-100 px-3 py-1 text-sm font-semibold text-red-700">
-      1 Critical
-    </span>
-  </div>
-
-  <div className="mt-5 overflow-x-auto">
-    <table className="w-full text-left text-sm">
-      <thead className="border-b text-slate-500">
-        <tr>
-          <th className="pb-3 font-medium">Component</th>
-          <th className="pb-3 font-medium">Current Stock</th>
-          <th className="pb-3 font-medium">Daily Usage</th>
-          <th className="pb-3 font-medium">Days of Cover</th>
-          <th className="pb-3 font-medium">Status</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <tr className="border-b">
-          <td className="py-4 font-semibold">Motor Housing</td>
-          <td className="py-4">30 units</td>
-          <td className="py-4">15 units/day</td>
-          <td className="py-4">2 days</td>
-          <td className="py-4">
-            <span className="rounded-full bg-red-100 px-3 py-1 text-xs font-semibold text-red-700">
-              Critical
-            </span>
-          </td>
-        </tr>
-
-        <tr className="border-b">
-          <td className="py-4 font-semibold">Electric Motor</td>
-          <td className="py-4">120 units</td>
-          <td className="py-4">15 units/day</td>
-          <td className="py-4">8 days</td>
-          <td className="py-4">
-            <span className="rounded-full bg-amber-100 px-3 py-1 text-xs font-semibold text-amber-700">
-              Watch
-            </span>
-          </td>
-        </tr>
-
-        <tr>
-          <td className="py-4 font-semibold">Copper Wire</td>
-          <td className="py-4">900 m</td>
-          <td className="py-4">75 m/day</td>
-          <td className="py-4">12 days</td>
-          <td className="py-4">
-            <span className="rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-700">
-              Healthy
-            </span>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</section>
             </div>
           )}
+        </section>
+
+        <section className="mt-8 rounded-xl bg-white p-6 shadow">
+          <div className="flex items-center justify-between">
+            <div>
+              <h2 className="text-xl font-bold">Inventory Risk Monitor</h2>
+              <p className="mt-1 text-sm text-slate-600">
+                Components most likely to affect production.
+              </p>
+            </div>
+
+            <span className="rounded-full bg-red-100 px-3 py-1 text-sm font-semibold text-red-700">
+              1 Critical
+            </span>
+          </div>
+
+          <div className="mt-5 overflow-x-auto">
+            <table className="w-full text-left text-sm">
+              <thead className="border-b text-slate-500">
+                <tr>
+                  <th className="pb-3 font-medium">Component</th>
+                  <th className="pb-3 font-medium">Current Stock</th>
+                  <th className="pb-3 font-medium">Daily Usage</th>
+                  <th className="pb-3 font-medium">Days of Cover</th>
+                  <th className="pb-3 font-medium">Status</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                {inventory.map((item) => (
+                  <tr key={item.component} className="border-b last:border-0">
+                    <td className="py-4 font-semibold">{item.component}</td>
+                    <td className="py-4">{item.stock}</td>
+                    <td className="py-4">{item.usage}</td>
+                    <td className="py-4">{item.cover}</td>
+                    <td className="py-4">
+                      <span
+                        className={`rounded-full px-3 py-1 text-xs font-semibold ${item.statusClass}`}
+                      >
+                        {item.status}
+                      </span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </section>
       </div>
     </main>
