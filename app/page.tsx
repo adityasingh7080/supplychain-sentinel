@@ -186,6 +186,80 @@ export default function Home() {
                 ))}
               </tbody>
             </table>
+            <section className="mt-8 rounded-xl bg-white p-6 shadow">
+  <div className="flex items-center justify-between">
+    <div>
+      <h2 className="text-xl font-bold">Supplier Performance Monitor</h2>
+      <p className="mt-1 text-sm text-slate-600">
+        Reliability and disruption risk across active suppliers.
+      </p>
+    </div>
+
+    <span className="rounded-full bg-blue-100 px-3 py-1 text-sm font-semibold text-blue-700">
+      3 Active Suppliers
+    </span>
+  </div>
+
+  <div className="mt-5 overflow-x-auto">
+    <table className="w-full text-left text-sm">
+      <thead className="border-b text-slate-500">
+        <tr>
+          <th className="pb-3 font-medium">Supplier</th>
+          <th className="pb-3 font-medium">Component</th>
+          <th className="pb-3 font-medium">Lead Time</th>
+          <th className="pb-3 font-medium">Reliability</th>
+          <th className="pb-3 font-medium">Late Shipments</th>
+          <th className="pb-3 font-medium">Alternate Supplier</th>
+          <th className="pb-3 font-medium">Risk</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr className="border-b">
+          <td className="py-4 font-semibold">MetalWorks Ltd.</td>
+          <td className="py-4">Motor Housing</td>
+          <td className="py-4">10 days</td>
+          <td className="py-4">82%</td>
+          <td className="py-4">3</td>
+          <td className="py-4">AlloyParts</td>
+          <td className="py-4">
+            <span className="rounded-full bg-red-100 px-3 py-1 text-xs font-semibold text-red-700">
+              High
+            </span>
+          </td>
+        </tr>
+
+        <tr className="border-b">
+          <td className="py-4 font-semibold">VoltCore Systems</td>
+          <td className="py-4">Electric Motor</td>
+          <td className="py-4">8 days</td>
+          <td className="py-4">91%</td>
+          <td className="py-4">1</td>
+          <td className="py-4">PowerDrive</td>
+          <td className="py-4">
+            <span className="rounded-full bg-amber-100 px-3 py-1 text-xs font-semibold text-amber-700">
+              Medium
+            </span>
+          </td>
+        </tr>
+
+        <tr>
+          <td className="py-4 font-semibold">CopperLink Industries</td>
+          <td className="py-4">Copper Wire</td>
+          <td className="py-4">5 days</td>
+          <td className="py-4">97%</td>
+          <td className="py-4">0</td>
+          <td className="py-4">WireSource</td>
+          <td className="py-4">
+            <span className="rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-700">
+              Low
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
           </div>
         </section>
       </div>
